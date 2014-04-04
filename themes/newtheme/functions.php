@@ -27,14 +27,15 @@ function dobavit_pervii_klass($klassi) {
 }
 add_action( 'init', 'create_post_type' );
 function create_post_type() {
-	register_post_type( 'Нашi спонсори',
+	register_post_type( 'Our courses',
 		array(
 			'labels' => array(
-				'name' => __( 'Нашi спонсори' ),
-				'singular_name' => __( 'Нашi спонсори' )
+				'name' => __( 'Our courses' ),
+				'singular_name' => __( 'Our courses' )
 			),
 		'public' => true,
 		'has_archive' => true,
+		'supports' => array ('title', 'editor', 'thumbnail', 'revisions' )
 		)
 	);
 } 
