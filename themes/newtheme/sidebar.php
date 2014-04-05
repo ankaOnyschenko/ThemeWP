@@ -4,13 +4,39 @@
 			|| !dynamic_sidebar ('Доп. поле') ) { ?> <?php } ?></li>
 			
 			<li class="our-sponsors">
-				<h3>Наші спонсори</h3>
+				<h3>		
+					<?php
+						$obj = get_post_type_object( 'sponsors' );
+						echo $obj->labels->name;
+					?>
+				</h3>
 				<ul>
-					<li class="house-of-gospel"><a href="#"><img src="/images/house_of_gospel.png" alt="Дім Євангілія" /></a></li>
-					<li class="master-of-code"><a href="#"><img src="/images/master_of_code.png" alt="master.of.code" /></a></li>
-					<li class="sergium"><a href="#"><img src="/images/sergium.png" alt="Sergium" /></a></li>
-					<li class="yothog"><a href="#"><img src="/images/yothog.png" alt="Yothog" /></a></li>
-					<li class="sponsor"><a href="#"><img src="/images/sponsor.png" alt="Sponsor" /></a></li>
+				<?php
+					$args = array(
+						'post_type' => 'sponsors',
+						'order'     => 'ASC',
+						);
+					$sponsors = new WP_Query( $args );
+						if( $sponsors->have_posts() ) {
+							while( $sponsors->have_posts() ) {
+					$sponsors->the_post();
+				?>			
+					<li class="sponsors">
+						<a href="#">		
+							<?php
+								if ( has_post_thumbnail() ) {
+								the_post_thumbnail();
+							} ?>
+							<?php the_content() ?>
+						</a>
+					</li>
+			<?php
+					}
+				}
+				else {
+					echo 'No sponsors!';
+				}
+			?>
 				</ul>
 			</li>
 		</ul>

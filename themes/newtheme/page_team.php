@@ -27,7 +27,7 @@
 			<li>
 				 <h3>
 					<?php the_title() ?>
-					<span><?php get_post_custom() ?> </span>
+					<span><?php echo get_post_meta($post->ID, "location", $single = true); ?> </span>
 				</h3>			
 				<?php
 					if ( has_post_thumbnail() ) {
@@ -39,7 +39,7 @@
 					}
 				}
 				else {
-					echo 'Oh ohm no courses!';
+					echo 'No team!';
 				}
 			?>
 		</ul>

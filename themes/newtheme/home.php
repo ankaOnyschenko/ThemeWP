@@ -8,7 +8,10 @@
 		</p>
 	<?php } else {?> <?php } ?>
 		<div class="our-courses"> 
-			<?php $category = get_the_category(); echo $category[0]->cat_name; ?>
+		<?php
+			$obj = get_post_type_object( 'courses' );
+			echo $obj->labels->name;
+		?>
 		</div>
 		<?php if (is_home()) { query_posts($query_string.'&cat=2&showposts=10'); } ?>
 		<ul class="list-of-courses">
@@ -34,7 +37,7 @@
 					}
 				}
 				else {
-					echo 'Oh ohm no courses!';
+					echo 'No courses!';
 				}
 			?>
         </ul>		
