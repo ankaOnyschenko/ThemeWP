@@ -27,18 +27,30 @@ function dobavit_pervii_klass($klassi) {
 }
 add_action( 'init', 'create_post_type' );
 function create_post_type() {
-	register_post_type( 'Our courses',
+	register_post_type( 'Courses',
 		array(
 			'labels' => array(
 				'name' => __( 'Our courses' ),
-				'singular_name' => __( 'Our courses' )
+				'singular_name' => __( 'Courses' )
 			),
 		'public' => true,
 		'has_archive' => true,
 		'supports' => array ('title', 'editor', 'thumbnail', 'revisions' )
 		)
 	);
+	register_post_type( 'Team',
+		array(
+			'labels' => array(
+				'name' => __( 'Our team' ),
+				'singular_name' => __( 'Team' )
+			),
+		'public' => true,
+		'has_archive' => true,
+		'supports' => array ('title', 'editor', 'thumbnail', 'revisions', 'custom-fields' )
+		)
+	);
 } 
+
 if (function_exists ('register_sidebar'))
 register_sidebar (array ('name' => 'Доп. поле')); 
 
@@ -46,6 +58,12 @@ register_sidebar (array ('name' => 'Доп. поле'));
 
 
 function geekhub_customize_register( $wp_customize ) {
+        $wp_customize->add_setting( 'header_logo' , array(  // Geekhub Logo
+            'transport'   => 'refresh',
+        ) );
+        $wp_customize->add_setting( 'site_decsription' , array(  // Geekhub Logo
+            'transport'   => 'refresh',
+        ) );   
    $wp_customize->add_setting( 'header_textcolor' , array(
     'default'     => '#000000',
     'transport'   => 'refresh',
